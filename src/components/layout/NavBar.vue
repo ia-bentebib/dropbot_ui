@@ -1,9 +1,9 @@
 <template>
   <header>
-    <b-navbar toggleable="sm" type="dark" variant="primary">
+    <b-navbar toggleable="sm" type="dark" variant="primary" class="gradient-bg">
       <router-link class="navbar-brand" exact to="/">
-        <img class="logo" src="@/assets/freqtrade-logo.png" alt="Home Logo" />
-        <span class="navbar-brand-title d-sm-none d-md-inline">DropBot UI</span>
+        <img class="logo" src="@/assets/dropbot-white.png" alt="Home Logo" />
+        <span class="navbar-brand-title d-sm-none d-md-inline">DropBot</span>
       </router-link>
 
       <!-- TODO: For XS breakpoint, this should be here...  -->
@@ -18,8 +18,8 @@
           <router-link v-if="!botStore.canRunBacktest" class="nav-link navbar-nav" to="/dashboard"
             >Dashboard</router-link
           >
-          <router-link class="nav-link navbar-nav" to="/graph">Chart</router-link>
-          <router-link class="nav-link navbar-nav" to="/logs">Logs</router-link>
+          <!-- <router-link class="nav-link navbar-nav" to="/graph">Chart</router-link> -->
+          <!-- <router-link class="nav-link navbar-nav" to="/logs">Logs</router-link> -->
           <router-link v-if="botStore.canRunBacktest" class="nav-link navbar-nav" to="/backtest"
             >Backtest</router-link
           >
@@ -61,11 +61,11 @@
               }}
             </b-nav-text>
           </li>
-          <li v-if="botStore.hasBots" class="nav-item">
-            <!-- Hide dropdown on xs, instead show below  -->
+
+          <!-- <li v-if="botStore.hasBots" class="nav-item">
             <b-nav-item-dropdown id="avatar-drop" right class="d-none d-sm-block">
               <template #button-content>
-                <b-avatar size="2em" button>FT</b-avatar>
+                <b-avatar size="2em" button>+</b-avatar>
               </template>
               <b-dropdown-item>V: {{ settingsStore.uiVersion }}</b-dropdown-item>
               <router-link class="dropdown-item" to="/settings">Settings</router-link>
@@ -80,7 +80,6 @@
               >
             </b-nav-item-dropdown>
             <div class="d-block d-sm-none">
-              <!-- Visible only on XS -->
               <li class="nav-item text-secondary ml-2 d-sm-none d-flex justify-content-between">
                 <div class="d-flex">
                   <b-nav-text class="verticalCenter small mr-2">
@@ -107,7 +106,7 @@
                 >Sign Out</router-link
               >
             </div>
-          </li>
+          </li> -->
           <li v-else>
             <!-- should open Modal window! -->
             <LoginModal />
@@ -178,7 +177,7 @@ export default defineComponent({
       }
     };
     const setTitle = () => {
-      let title = 'freqUI';
+      let title = 'DropBotUI';
       if (settingsStore.openTradesInTitle === OpenTradeVizOptions.asTitle) {
         title = `(${botStore.activeBotorUndefined?.openTradeCount}) ${title}`;
       }
@@ -245,6 +244,13 @@ export default defineComponent({
 .logo {
   vertical-align: middle;
   height: 30px;
+}
+
+.gradient-bg {
+  background: rgb(255,0,102);
+  background: linear-gradient(148deg, rgba(255,0,102,1) 24%, rgba(255,208,0,1) 100%);
+  border-radius: 0px 0px 20px 20px;
+  box-shadow: black 0px 0px 10px 0px;
 }
 
 .dropdown-toggle::after {

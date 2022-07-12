@@ -16,7 +16,7 @@
 }
 
 [data-theme="dark"] {
-    $bg-dark: rgb(18, 18, 18);
+    $bg-dark: #393244;
 
     $bg-darker: darken($bg-dark, 5%);
     $fg-color: #dedede;

@@ -14,32 +14,32 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/trade',
-    name: 'Freqtrade Trading',
+    name: 'DropBot Trading',
     component: () => import('@/views/Trading.vue'),
   },
   {
     path: '/graph',
-    name: 'Freqtrade Graph',
+    name: 'DropBot Graph',
     component: () => import('@/views/Graphs.vue'),
   },
   {
     path: '/logs',
-    name: 'Freqtrade Logs',
+    name: 'DropBot Logs',
     component: () => import('@/views/LogView.vue'),
   },
   {
     path: '/backtest',
-    name: 'Freqtrade Backtest',
+    name: 'DropBot Backtest',
     component: () => import('@/views/Backtesting.vue'),
   },
   {
     path: '/dashboard',
-    name: 'Freqtrade Dashboard',
+    name: 'DropBot Dashboard',
     component: () => import('@/views/Dashboard.vue'),
   },
   {
     path: '/balance',
-    name: 'Freqtrade Balance',
+    name: 'DropBot Balance',
     component: () => import('@/components/ftbot/Balance.vue'),
   },
   {
@@ -58,7 +58,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/settings',
-    name: 'Freqtrade Settings',
+    name: 'DropBot Settings',
     component: () => import('@/views/Settings.vue'),
   },
   {

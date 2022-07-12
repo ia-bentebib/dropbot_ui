@@ -33,7 +33,7 @@
           id="username-input"
           v-model="auth.username"
           required
-          placeholder="Freqtrader"
+          placeholder="DropBotTrader"
           @keydown.enter.native="handleOk"
         ></b-form-input>
       </b-form-group>
@@ -56,11 +56,7 @@
           {{ errorMessage }}
           <br />
           <span v-if="errorMessageCORS">
-            Please also check your bot's CORS configuration:
-            <a href="https://www.freqtrade.io/en/latest/rest-api/#cors"
-              >Freqtrade CORS documentation</a
-            ></span
-          >
+            Please also check your bot's CORS configuration
         </b-alert>
       </div>
       <div v-if="inModal === false" class="float-right">

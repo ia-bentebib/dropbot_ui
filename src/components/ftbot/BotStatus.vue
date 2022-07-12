@@ -1,7 +1,7 @@
 <template>
   <div v-if="botStore.activeBot.botState">
     <p>
-      Running Freqtrade <strong>{{ botStore.activeBot.version }}</strong>
+      Running DropBot <strong>{{ botStore.activeBot.version }}</strong>
     </p>
     <p>
       Running with

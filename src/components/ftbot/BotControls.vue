@@ -112,7 +112,7 @@ export default defineComponent({
 
     const handleStopBuy = () => {
       root.$bvModal
-        .msgBoxConfirm('Stop buying? Freqtrade will continue to handle open trades.')
+        .msgBoxConfirm('Stop buying? DropBot will continue to handle open trades.')
         .then((value: boolean) => {
           if (value) {
             botStore.activeBot.stopBuy();
