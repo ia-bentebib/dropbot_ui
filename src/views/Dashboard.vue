@@ -42,11 +42,11 @@
       :min-h="4"
       drag-allow-from=".drag-header"
     >
-      <DraggableContainer header="Bot comparison">
+      <DraggableContainer header="Trades summary">
         <bot-comparison-list />
       </DraggableContainer>
     </GridItem>
-    <GridItem
+    <!-- <GridItem
       :i="gridLayoutAllOpenTrades.i"
       :x="gridLayoutAllOpenTrades.x"
       :y="gridLayoutAllOpenTrades.y"
@@ -63,7 +63,7 @@
           multi-bot-view
         />
       </DraggableContainer>
-    </GridItem>
+    </GridItem> -->
     <GridItem
       :i="gridLayoutCumChart.i"
       :x="gridLayoutCumChart.x"
@@ -78,7 +78,7 @@
         <CumProfitChart :trades="botStore.allTradesSelectedBots" :show-title="false" />
       </DraggableContainer>
     </GridItem>
-    <GridItem
+    <!-- <GridItem
       :i="gridLayoutTradesLogChart.i"
       :x="gridLayoutTradesLogChart.x"
       :y="gridLayoutTradesLogChart.y"
@@ -91,7 +91,7 @@
       <DraggableContainer header="Trades Log">
         <TradesLogChart :trades="botStore.allTradesSelectedBots" :show-title="false" />
       </DraggableContainer>
-    </GridItem>
+    </GridItem> -->
   </GridLayout>
 </template>
 

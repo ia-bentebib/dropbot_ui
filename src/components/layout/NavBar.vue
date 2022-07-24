@@ -8,21 +8,21 @@
 
       <!-- TODO: For XS breakpoint, this should be here...  -->
       <!-- <ReloadControl class="mr-3" /> -->
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      <!-- <b-navbar-toggle target="nav-collapse"></b-navbar-toggle> -->
 
       <b-collapse id="nav-collapse" class="text-right text-md-center" is-nav>
         <b-navbar-nav>
-          <router-link v-if="!botStore.canRunBacktest" class="nav-link navbar-nav" to="/trade"
+          <!-- <router-link v-if="!botStore.canRunBacktest" class="nav-link navbar-nav" to="/trade"
             >Trade</router-link
-          >
+          > -->
           <router-link v-if="!botStore.canRunBacktest" class="nav-link navbar-nav" to="/dashboard"
             >Dashboard</router-link
           >
           <!-- <router-link class="nav-link navbar-nav" to="/graph">Chart</router-link> -->
           <!-- <router-link class="nav-link navbar-nav" to="/logs">Logs</router-link> -->
-          <router-link v-if="botStore.canRunBacktest" class="nav-link navbar-nav" to="/backtest"
+          <!-- <router-link v-if="botStore.canRunBacktest" class="nav-link navbar-nav" to="/backtest"
             >Backtest</router-link
-          >
+          > -->
           <BootswatchThemeSelect />
         </b-navbar-nav>
 

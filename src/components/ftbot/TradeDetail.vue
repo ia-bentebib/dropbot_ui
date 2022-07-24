@@ -48,7 +48,7 @@
         </details>
       </div>
       <div class="mt-2 mt-lg-0 col-lg-7">
-        <h5 class="detail-header">Stoploss</h5>
+        <!-- <h5 class="detail-header">Stoploss</h5>
         <ValuePair description="Stoploss">
           {{ formatPercent(trade.stop_loss_pct / 100) }} |
           {{ formatPrice(trade.stop_loss_abs) }}
@@ -69,7 +69,7 @@
         </ValuePair>
         <ValuePair v-if="trade.stoploss_last_update_timestamp" description="Stoploss last updated">
           {{ timestampms(trade.stoploss_last_update_timestamp) }}
-        </ValuePair>
+        </ValuePair> -->
         <div v-if="trade.trading_mode !== undefined && trade.trading_mode !== 'spot'">
           <h5 class="detail-header">Futures/Margin</h5>
           <ValuePair description="Direction">

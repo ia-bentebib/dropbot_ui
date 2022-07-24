@@ -3,7 +3,7 @@
     <!-- Only visible on xs (phone) viewport! -->
     <hr class="my-0" />
     <div class="d-flex flex-align-center justify-content-center">
-      <router-link v-if="!botStore.canRunBacktest" class="nav-link navbar-nav" to="/open_trades">
+      <!-- <router-link v-if="!botStore.canRunBacktest" class="nav-link navbar-nav" to="/open_trades">
         <OpenTradesIcon />
         Trades
       </router-link>
@@ -14,7 +14,7 @@
       <router-link v-if="!botStore.canRunBacktest" class="nav-link navbar-nav" to="/pairlist">
         <PairListIcon />
         Pairlist
-      </router-link>
+      </router-link> -->
       <router-link v-if="!botStore.canRunBacktest" class="nav-link navbar-nav" to="/balance">
         <BalanceIcon />
         Balance
