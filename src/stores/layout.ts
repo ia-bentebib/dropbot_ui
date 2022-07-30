@@ -15,6 +15,7 @@ export enum DashboardLayout {
   allOpenTrades = 'g-allOpenTrades',
   cumChartChart = 'g-cumChartChart',
   tradesLogChart = 'g-TradesLogChart',
+  tradeHistory = 'g-tradeHistory',
 }
 
 // Define default layouts
@@ -40,15 +41,17 @@ const DEFAULT_DASHBOARD_LAYOUT: GridItemData[] = [
   { i: DashboardLayout.dailyChart, x: 8, y: 0, w: 4, h: 6 },
   { i: DashboardLayout.allOpenTrades, x: 0, y: 6, w: 8, h: 6 },
   { i: DashboardLayout.cumChartChart, x: 8, y: 6, w: 4, h: 6 },
-  { i: DashboardLayout.tradesLogChart, x: 0, y: 12, w: 12, h: 4 },
+  { i: DashboardLayout.tradeHistory, x: 0, y: 12, w: 12, h: 6 },
+  { i: DashboardLayout.tradesLogChart, x: 0, y: 0, w: 8, h: 0 }, /* don't display */
 ];
 
 const DEFAULT_DASHBOARD_LAYOUT_SM: GridItemData[] = [
   { i: DashboardLayout.botComparison, x: 0, y: 0, w: 12, h: 6 } /* Bot Comparison */,
-  { i: DashboardLayout.allOpenTrades, x: 0, y: 6, w: 12, h: 8 },
-  { i: DashboardLayout.dailyChart, x: 0, y: 14, w: 12, h: 6 },
-  { i: DashboardLayout.cumChartChart, x: 0, y: 20, w: 12, h: 6 },
-  { i: DashboardLayout.tradesLogChart, x: 0, y: 26, w: 12, h: 4 },
+  { i: DashboardLayout.allOpenTrades, x: 0, y: 6, w: 12, h: 6 },
+  { i: DashboardLayout.tradeHistory, x: 0, y: 12, w: 12, h: 6 },
+  { i: DashboardLayout.dailyChart, x: 0, y: 0, w: 12, h: 0 },
+  { i: DashboardLayout.cumChartChart, x: 0, y: 0, w: 12, h: 0 },
+  { i: DashboardLayout.tradesLogChart, x: 0, y: 0, w: 12, h: 0 },
 ];
 
 const STORE_LAYOUTS = 'ftLayoutSettings';
@@ -82,7 +85,13 @@ migrateLayoutSettings();
  * @param gridLayout Array of grid layouts used in this layout. Must be passed to GridLayout, too.
  * @param name Name within the dashboard layout to find
  */
-export function findGridLayout(gridLayout: GridItemData[], name: string): GridItemData {
+export function findGridLayout(isLarge: boolean, name: string): GridItemData {
+  let gridLayout;
+  if(isLarge){
+    gridLayout = DEFAULT_DASHBOARD_LAYOUT;
+  }else{
+    gridLayout = DEFAULT_DASHBOARD_LAYOUT_SM;
+  }
   let layout = gridLayout.find((value) => value.i === name);
   if (!layout) {
     layout = { i: name, x: 0, y: 0, w: 4, h: 6 };
@@ -94,6 +103,7 @@ export const useLayoutStore = defineStore('layoutStore', {
   state: () => {
     return {
       dashboardLayout: JSON.parse(JSON.stringify(DEFAULT_DASHBOARD_LAYOUT)),
+      dashboardLayoutSm: JSON.parse(JSON.stringify(DEFAULT_DASHBOARD_LAYOUT_SM)),
       tradingLayout: JSON.parse(JSON.stringify(DEFAULT_TRADING_LAYOUT)),
       layoutLocked: true,
     };

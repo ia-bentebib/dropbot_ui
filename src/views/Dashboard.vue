@@ -11,8 +11,8 @@
     :responsive="true"
     :prevent-collision="true"
     :cols="{ lg: 12, md: 12, sm: 12, xs: 4, xxs: 2 }"
-    @layout-updated="layoutUpdatedEvent"
     @breakpoint-changed="breakpointChanged"
+    @layout-updated="layoutUpdatedEvent"
   >
     <GridItem
       :i="gridLayoutDaily.i"
@@ -46,7 +46,7 @@
         <bot-comparison-list />
       </DraggableContainer>
     </GridItem>
-    <!-- <GridItem
+    <GridItem
       :i="gridLayoutAllOpenTrades.i"
       :x="gridLayoutAllOpenTrades.x"
       :y="gridLayoutAllOpenTrades.y"
@@ -63,7 +63,24 @@
           multi-bot-view
         />
       </DraggableContainer>
-    </GridItem> -->
+    </GridItem>
+    <GridItem
+      :i="gridLayoutTradesHistory.i"
+      :x="gridLayoutTradesHistory.x"
+      :y="gridLayoutTradesHistory.y"
+      :w="gridLayoutTradesHistory.w"
+      :h="gridLayoutTradesHistory.h"
+      drag-allow-from=".drag-header"
+    >
+      <DraggableContainer header="Closed Trades">
+        <trade-list
+          :trades="botStore.activeBot.closedTrades"
+          title="Trade history"
+          :show-filter="true"
+          empty-text="No closed trades so far."
+        />
+      </DraggableContainer>
+    </GridItem>
     <GridItem
       :i="gridLayoutCumChart.i"
       :x="gridLayoutCumChart.x"
@@ -78,7 +95,7 @@
         <CumProfitChart :trades="botStore.allTradesSelectedBots" :show-title="false" />
       </DraggableContainer>
     </GridItem>
-    <!-- <GridItem
+    <GridItem
       :i="gridLayoutTradesLogChart.i"
       :x="gridLayoutTradesLogChart.x"
       :y="gridLayoutTradesLogChart.y"
@@ -91,7 +108,7 @@
       <DraggableContainer header="Trades Log">
         <TradesLogChart :trades="botStore.allTradesSelectedBots" :show-title="false" />
       </DraggableContainer>
-    </GridItem> -->
+    </GridItem>
   </GridLayout>
 </template>
 
@@ -130,7 +147,7 @@ export default defineComponent({
     const currentBreakpoint = ref('');
 
     const breakpointChanged = (newBreakpoint) => {
-      //   // console.log('breakpoint:', newBreakpoint);
+      console.log('breakpoint:', newBreakpoint);
       currentBreakpoint.value = newBreakpoint;
     };
     const isResizableLayout = computed(() =>
@@ -141,38 +158,45 @@ export default defineComponent({
     });
 
     const gridLayout = computed((): GridItemData[] => {
-      if (isResizableLayout) {
+     // console.log(isResizableLayout);
+      console.log(layoutStore.dashboardLayout);
+      console.log(layoutStore.dashboardLayoutSm);
+      console.log("breakpoint2:", currentBreakpoint.value);
+      if (['', 'sm', 'md', 'lg', 'xl'].includes(currentBreakpoint.value)) {
+        console.log("UI large");
         return layoutStore.dashboardLayout;
+      }else{
+        console.log("UI sm");
+        return layoutStore.dashboardLayoutSm;
       }
-      return [...layoutStore.getDashboardLayoutSm];
     });
 
     const layoutUpdatedEvent = (newLayout) => {
-      if (isResizableLayout) {
-        console.log('newlayout', newLayout);
-        console.log('saving dashboard');
-        layoutStore.dashboardLayout = newLayout;
-      }
+        console.log('newlayout', newLayout);      
     };
 
     const gridLayoutDaily = computed((): GridItemData => {
-      return findGridLayout(gridLayout.value, DashboardLayout.dailyChart);
+      return findGridLayout(['', 'sm', 'md', 'lg', 'xl'].includes(currentBreakpoint.value), DashboardLayout.dailyChart);
     });
 
     const gridLayoutBotComparison = computed((): GridItemData => {
-      return findGridLayout(gridLayout.value, DashboardLayout.botComparison);
+      return findGridLayout(['', 'sm', 'md', 'lg', 'xl'].includes(currentBreakpoint.value), DashboardLayout.botComparison);
     });
 
     const gridLayoutAllOpenTrades = computed((): GridItemData => {
-      return findGridLayout(gridLayout.value, DashboardLayout.allOpenTrades);
+      return findGridLayout(['', 'sm', 'md', 'lg', 'xl'].includes(currentBreakpoint.value), DashboardLayout.allOpenTrades);
     });
 
     const gridLayoutCumChart = computed((): GridItemData => {
-      return findGridLayout(gridLayout.value, DashboardLayout.cumChartChart);
+      return findGridLayout(['', 'sm', 'md', 'lg', 'xl'].includes(currentBreakpoint.value), DashboardLayout.cumChartChart);
     });
 
     const gridLayoutTradesLogChart = computed((): GridItemData => {
-      return findGridLayout(gridLayout.value, DashboardLayout.tradesLogChart);
+      return findGridLayout(['', 'sm', 'md', 'lg', 'xl'].includes(currentBreakpoint.value), DashboardLayout.tradesLogChart);
+    });
+
+    const gridLayoutTradesHistory = computed((): GridItemData => {
+      return findGridLayout(['', 'sm', 'md', 'lg', 'xl'].includes(currentBreakpoint.value), DashboardLayout.tradeHistory);
     });
 
     const responsiveGridLayouts = computed(() => {
@@ -200,6 +224,7 @@ export default defineComponent({
       gridLayoutAllOpenTrades,
       gridLayoutCumChart,
       gridLayoutTradesLogChart,
+      gridLayoutTradesHistory,
       responsiveGridLayouts,
     };
   },

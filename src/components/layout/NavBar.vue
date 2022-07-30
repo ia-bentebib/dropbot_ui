@@ -107,10 +107,9 @@
               >
             </div>
           </li> -->
-          <li v-else>
-            <!-- should open Modal window! -->
+          <!-- <li v-else>
             <LoginModal />
-          </li>
+          </li> -->
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

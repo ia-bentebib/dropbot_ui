@@ -57,6 +57,7 @@
           <br />
           <span v-if="errorMessageCORS">
             Please also check your bot's CORS configuration
+          </span>
         </b-alert>
       </div>
       <div v-if="inModal === false" class="float-right">
